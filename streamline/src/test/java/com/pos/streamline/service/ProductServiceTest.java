@@ -26,6 +26,9 @@ public class ProductServiceTest {
     @InjectMocks
     private ProductService productService;
 
+    /**
+     * Test case for saving the product.
+     */
     @Test
     public void testSaveProduct() {
         // Given: Mock input DTO and expected entity
@@ -68,6 +71,6 @@ public class ProductServiceTest {
      * @return
      */
     public ProductData getProductData() {
-        return new ProductData(null, "Test Product", "Description", 100, 10);
+        return new ProductData(0L, "Test Product", "Description", 100, 10);
     }
 }
