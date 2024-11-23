@@ -43,6 +43,9 @@ public class ProductServiceTest_getAllProduct {
 
     }
 
+    /**
+     * mock the product data.
+     */
     public List<Product> getProduct() {
         // Given: Create a list of mock products
         Product product1 = new Product();
@@ -58,9 +61,6 @@ public class ProductServiceTest_getAllProduct {
         product2.setDescription("Description 2");
         product2.setPrice(200.0);
         product2.setQuantity(5);
-
-
-
         return Arrays.asList(product1, product2);
     }
 }

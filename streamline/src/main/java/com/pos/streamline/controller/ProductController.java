@@ -61,7 +61,19 @@ public class ProductController {
         }
         catch(Exception e){
             e.fillInStackTrace();
-            throw new Exception("error in fetching data."+e.getMessage());
+            throw new Exception("error in deleting data."+e.getMessage());
+        }
+        return new ResponseEntity<>(projectData, HttpStatus.OK);
+    }
+    @PutMapping("/updateProduct/")
+    public ResponseEntity<ProductData> updateProduct(@RequestBody ProductData productData) throws Exception {
+        ProductData projectData = null;
+        try{
+            projectData =  productService.updateProduct(productData);
+        }
+        catch(Exception e){
+            e.fillInStackTrace();
+            throw new Exception("error in updating data."+e.getMessage());
         }
         return new ResponseEntity<>(projectData, HttpStatus.OK);
     }

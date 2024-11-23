@@ -65,16 +65,16 @@ public class ProductServiceTest_deleteProductById {
         verify(productRepository, never()).delete(any(Product.class));
     }
 
-
+    /**
+     * mock the product data.
+     */
     public Product getProduct() {
-        // Given: Create a list of mock products
         Product product = new Product();
         product.setId(1L);
         product.setName("Product 1");
         product.setDescription("Description 1");
         product.setPrice(100.0);
         product.setQuantity(10);
-
         return product;
     }
 }

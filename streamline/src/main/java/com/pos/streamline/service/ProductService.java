@@ -57,10 +57,27 @@ public class ProductService implements ProductServiceImpl {
     }
 
     /**
-     *
-     *
+     * update product data
+     */
+    public ProductData updateProduct(ProductData productData) {
+        Product product = productRepository.getProductById(productData.getId());
+        if(product == null){
+            throw new jakarta.persistence.EntityNotFoundException(
+                    "Product not found with ID: " + productData.getId()
+            );
+
+        }
+        product.setName(productData.getName());
+        product.setDescription(productData.getDescription());
+        product.setPrice(productData.getPrice());
+        product.setQuantity(productData.getQuantity());
+        productRepository.save(product);
+        return ProductMapper.toDTO(product);
+    }
+    /**
      * delete single product
      */
+    @Override
     public ProductData deleteProductById(Long productId) {
         Product product = productRepository.getProductById(productId);
         if(product == null){

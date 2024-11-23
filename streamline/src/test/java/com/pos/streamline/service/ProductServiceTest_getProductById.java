@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -47,8 +45,10 @@ public class ProductServiceTest_getProductById {
 
     }
 
+    /**
+     * mock the product data.
+     */
     public Product getProduct() {
-        // Given: Create a list of mock products
         Product product = new Product();
         product.setId(1L);
         product.setName("Product 1");

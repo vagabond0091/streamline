@@ -8,5 +8,6 @@ public interface  ProductServiceImpl {
     ProductData saveProduct(ProductData productData);
     List<ProductData> getAllProduct();
     ProductData getProductById(Long productId);
+    ProductData deleteProductById(Long productId);
 }
 
