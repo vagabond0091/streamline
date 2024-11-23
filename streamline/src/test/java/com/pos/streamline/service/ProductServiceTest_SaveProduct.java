@@ -4,22 +4,18 @@ import com.pos.streamline.data.ProductData;
 import com.pos.streamline.entity.Product;
 import com.pos.streamline.mapper.ProductMapper;
 import com.pos.streamline.repository.ProductRepository;
-import com.pos.streamline.serviceimpl.ProductServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.hamcrest.Matchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductServiceTest {
+public class ProductServiceTest_SaveProduct {
     @Mock
     private ProductRepository productRepository;
 

@@ -4,20 +4,21 @@ import com.pos.streamline.data.ProductData;
 import com.pos.streamline.entity.Product;
 import com.pos.streamline.repository.ProductRepository;
 import com.pos.streamline.serviceimpl.ProductServiceImpl;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.pos.streamline.mapper.ProductMapper;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService implements ProductServiceImpl {
+    private ProductMapper productMapper;
     @Autowired
     private ProductRepository productRepository;
     /**
      * save the product and return the response
-     * @return
      */
     @Override
     public ProductData saveProduct(ProductData productData) {
@@ -30,12 +31,29 @@ public class ProductService implements ProductServiceImpl {
     }
 
     /**
-     *
      * return all products
-     * @return
+     *
      */
     @Override
-    public List<Product> getAllProduct() {
-        return productRepository.findAll();
+    public List<ProductData> getAllProduct() {
+
+        return  productRepository.findAll()
+                .stream()
+                .map(ProductMapper::toDTO)
+                .collect(Collectors.toList());
     }
+
+    /**
+     *
+     * return single product
+     */
+    @Override
+    public ProductData getProductById(Long productId) {
+        Product product = productRepository.getProductById(productId);
+        if(product == null){
+            throw new EntityNotFoundException("Product not found with ID: " + productId);
+        }
+        return ProductMapper.toDTO(product);
+    }
+
 }
