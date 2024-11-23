@@ -56,4 +56,20 @@ public class ProductService implements ProductServiceImpl {
         return ProductMapper.toDTO(product);
     }
 
+    /**
+     *
+     *
+     * delete single product
+     */
+    public ProductData deleteProductById(Long productId) {
+        Product product = productRepository.getProductById(productId);
+        if(product == null){
+            throw new EntityNotFoundException("Product not found with ID: " + productId);
+
+        }
+         productRepository.delete(product);
+
+        return ProductMapper.toDTO(product);
+    }
+
 }

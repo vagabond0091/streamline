@@ -53,4 +53,17 @@ public class ProductController {
         return new ResponseEntity<>(projectData, HttpStatus.OK);
     }
 
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<ProductData> deleteProduct(@PathVariable Long id) throws Exception {
+        ProductData projectData = null;
+        try{
+            projectData =  productService.deleteProductById(id);
+        }
+        catch(Exception e){
+            e.fillInStackTrace();
+            throw new Exception("error in fetching data."+e.getMessage());
+        }
+        return new ResponseEntity<>(projectData, HttpStatus.OK);
+    }
+
 }
