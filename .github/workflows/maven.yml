@@ -35,6 +35,6 @@ jobs:
           image: strangerthings1246/streamline
           tags: v1, latest
           registry: docker.io
-          dockerfile: streamline/Dockerfile
+          dockerfile: streamline\streamline\Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
