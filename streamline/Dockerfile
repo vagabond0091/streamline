@@ -4,7 +4,9 @@ FROM openjdk:17
 WORKDIR /app
 
 # Copy the generated JAR file into the container
-COPY target/streamline.jar app.jar
+COPY target/*.jar streamline.jar
+
+EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "streamline.jar"]
