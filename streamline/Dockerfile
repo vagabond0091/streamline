@@ -1,5 +1,10 @@
 FROM openjdk:17
-WORKDIR /streamline
-COPY target/streamline.jar streamline.jar
-ENTRYPOINT ["java","-jar","streamline.jar"]
 
+# Set the working directory
+WORKDIR /streamline
+
+# Copy the built JAR file into the container
+COPY target/*.jar streamline.jar
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "streamline.jar"]
