@@ -1,5 +1,5 @@
 FROM openjdk:17
-WORKDIR /app
-COPY ./target/*jar app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+WORKDIR /streamline
+COPY target/streamline.jar streamline.jar
+ENTRYPOINT ["java","-jar","streamline.jar"]
 
