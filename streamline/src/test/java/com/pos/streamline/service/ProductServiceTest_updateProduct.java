@@ -28,7 +28,7 @@ public class ProductServiceTest_updateProduct {
         Product existingProduct =  getProduct();
 
         // Mock input data for update
-        ProductData updatedData = new ProductData(1L, "Updated Product Name", "Updated Description", 150.0, 20);
+        ProductData updatedData = new ProductData(1L, "Updated Product Name", "Updated Description", 150.0, 20,"asd","asd","asd","asd");
 
         // Mock repository behavior
         when(productRepository.getProductById(Mockito.anyLong())).thenReturn(existingProduct);
@@ -39,7 +39,7 @@ public class ProductServiceTest_updateProduct {
 
         // Then: Validate the product details were updated
         assertEquals(updatedData.getId(), actualProductData.getId());
-        assertEquals(updatedData.getName(), actualProductData.getName());
+        assertEquals(updatedData.getTitle(), actualProductData.getTitle());
         assertEquals(updatedData.getDescription(), actualProductData.getDescription());
         assertEquals(updatedData.getPrice(), actualProductData.getPrice());
         assertEquals(updatedData.getQuantity(), actualProductData.getQuantity());
@@ -52,7 +52,7 @@ public class ProductServiceTest_updateProduct {
     @Test
     public void testUpdateProduct_NotFound() {
         // Given: Repository returns null for nonexistent product
-        ProductData updatedData = new ProductData(999L, "Updated Product Name", "Updated Description", 150.0, 20);
+        ProductData updatedData = new ProductData(999L, "Updated Product Name", "Updated Description", 150.0, 20,"asd","asd","asd","asd");
         when(productRepository.getProductById(999L)).thenReturn(null);
 
         // When & Then: Expect EntityNotFoundException
@@ -77,7 +77,7 @@ public class ProductServiceTest_updateProduct {
     public Product getProduct() {
         Product existingProduct = new Product();
         existingProduct.setId(1L);
-        existingProduct.setName("Old Product Name");
+        existingProduct.setTitle("Old Product Name");
         existingProduct.setDescription("Old Description");
         existingProduct.setPrice(100.0);
         existingProduct.setQuantity(10);
@@ -88,6 +88,6 @@ public class ProductServiceTest_updateProduct {
      * Mock the product data
      */
     public ProductData getProductData() {
-        return new ProductData(999L, "Updated Product Name", "Updated Description", 150.0, 20);
+        return new ProductData(999L, "Updated Product Name", "Updated Description", 150.0, 20,"asd","asd","asd","asd");
     }
 }

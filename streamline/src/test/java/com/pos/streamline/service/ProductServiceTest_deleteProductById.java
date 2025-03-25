@@ -10,9 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -39,7 +36,7 @@ public class ProductServiceTest_deleteProductById {
 
         // Then: Validate that the product was deleted and mapped correctly
         assertEquals(product.getId(), actualProductData.getId());
-        assertEquals(product.getName(), actualProductData.getName());
+        assertEquals(product.getTitle(), actualProductData.getTitle());
         assertEquals(product.getDescription(), actualProductData.getDescription());
         assertEquals(product.getPrice(), actualProductData.getPrice());
         assertEquals(product.getQuantity(), actualProductData.getQuantity());
@@ -71,7 +68,7 @@ public class ProductServiceTest_deleteProductById {
     public Product getProduct() {
         Product product = new Product();
         product.setId(1L);
-        product.setName("Product 1");
+        product.setTitle("Product 1");
         product.setDescription("Description 1");
         product.setPrice(100.0);
         product.setQuantity(10);

@@ -42,7 +42,7 @@ public class ProductServiceTest_SaveProduct {
 
         // Then: Validate the results
         assertEquals(expectedDTO.getId(), actualData.getId());
-        assertEquals(expectedDTO.getName(), actualData.getName());
+        assertEquals(expectedDTO.getTitle(), actualData.getTitle());
         assertEquals(expectedDTO.getDescription(), actualData.getDescription());
         assertEquals(expectedDTO.getPrice(), actualData.getPrice());
         assertEquals(expectedDTO.getQuantity(), actualData.getQuantity());
@@ -55,7 +55,7 @@ public class ProductServiceTest_SaveProduct {
     public Product getProductEntity() {
         Product productEntity = new Product();
         productEntity.setId(1L);
-        productEntity.setName("Test Product");
+        productEntity.setTitle("Test Product");
         productEntity.setDescription("Description");
         productEntity.setPrice(100);
         productEntity.setQuantity(10);
@@ -67,6 +67,7 @@ public class ProductServiceTest_SaveProduct {
      * @return
      */
     public ProductData getProductData() {
-        return new ProductData(0L, "Test Product", "Description", 100, 10);
+        return new ProductData(0L, "Test Product", "Description", 100, 10,"asd","asd","asd","asd");
+
     }
 }

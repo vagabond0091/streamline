@@ -50,14 +50,14 @@ public class ProductServiceTest_getAllProduct {
         // Given: Create a list of mock products
         Product product1 = new Product();
         product1.setId(1L);
-        product1.setName("Product 1");
+        product1.setTitle("Product 1");
         product1.setDescription("Description 1");
         product1.setPrice(100.0);
         product1.setQuantity(10);
 
         Product product2 = new Product();
         product2.setId(2L);
-        product2.setName("Product 2");
+        product2.setTitle("Product 2");
         product2.setDescription("Description 2");
         product2.setPrice(200.0);
         product2.setQuantity(5);
