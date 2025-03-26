@@ -34,20 +34,41 @@ public class JWTFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
 
+        logger.info(" Received Authorization Header: " + authHeader); // Debug Log
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            System.out.println(" No valid Authorization header found!");
             filterChain.doFilter(request, response);
             return;
         }
+
         String token = authHeader.substring(7);
+        logger.info("Received Token: " + token);
         String username = jwtService.extractUsername(token);
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+        System.out.println(" Extracted Username: " + username);
+
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = applicationContext.getBean(UserService.class).loadUserByUsername(username);
-            if(jwtService.validateToken(token,userDetails)){
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+            logger.info("Loaded UserDetails: " + userDetails.getUsername());
+
+            if (jwtService.validateToken(token, userDetails)) {
+                logger.info(" Token is valid, setting authentication.");
+                UsernamePasswordAuthenticationToken authenticationToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                logger.info(" SecurityContext Authentication: "
+                        + SecurityContextHolder.getContext().getAuthentication());
+            } else {
+                logger.info(" Token validation failed!");
             }
         }
-        filterChain.doFilter(request,response);
+        else{
+            logger.info(" SecurityContext already has authentication!");
+
+        }
+
+        filterChain.doFilter(request, response);
     }
 }
